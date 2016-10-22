@@ -1,19 +1,19 @@
 (function(w, d) {
   var Todo = Backbone.Model.extend({
       initialize: function() {
-        this.on('change', function() {
-          console.log('Something in the model changed!!');
+        this.on('change:title', function() {
+          console.log('Title has been changed in this model.');
         });
       },
       defaults: {
-        title: '',
+        title: 'Title value',
         completed: false
       }
   }),
     todo1 = new Todo();
-
-  console.log(todo1.attributes.completed); // empty string
+  console.log(todo1.get('title'));
   console.log(todo1.set({
-    completed: true
-  })); // false
+    title: 'New title value!!'
+  }));
+  console.log(todo1.get('title'));
 })(window,document);
