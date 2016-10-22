@@ -1,7 +1,9 @@
 (function(w, d) {
   var Todo = Backbone.Model.extend({
       initialize: function() {
-        console.log('This model has been initialized.');
+        this.on('change', function() {
+          console.log('Something in the model changed!!');
+        });
       },
       defaults: {
         title: '',
@@ -11,5 +13,7 @@
     todo1 = new Todo();
 
   console.log(todo1.attributes.completed); // empty string
-  console.log(todo1.get('completed')); // false
+  console.log(todo1.set({
+    completed: true
+  })); // false
 })(window,document);
