@@ -1,0 +1,18 @@
+{
+  "name": "Learning BackboneJS",
+  "description": "I'm learning BackboneJS through Addy Osmani great book",
+  "main": "",
+  "authors": [
+    "JDavidHermoso"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "dist/vendors",
+    "test",
+    "tests"
+  ]
+}
