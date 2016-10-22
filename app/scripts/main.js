@@ -1,19 +1,25 @@
 (function(w, d) {
   var Todo = Backbone.Model.extend({
-      initialize: function() {
-        this.on('change:title', function() {
-          console.log('Title has been changed in this model.');
-        });
-      },
-      defaults: {
-        title: 'Title value',
-        completed: false
+    defaults: {
+      title: 'Title value',
+      completed: false
+    },
+    initialize: function() {
+      this.on('invalid', function(model, error) {
+        console.log(error);
+      });
+    },
+    validate: function(attrs) {
+      if (attrs.title === undefined) {
+        return 'Task title is void!!';
       }
+    }
   }),
     todo1 = new Todo();
-  console.log(todo1.get('title'));
   console.log(todo1.set({
     title: 'New title value!!'
   }));
-  console.log(todo1.get('title'));
+  todo1.unset('title', {
+    validate: true
+  });
 })(window,document);
