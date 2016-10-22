@@ -22,7 +22,7 @@
 	"beforeOpeningCurlyBrace": true
   },
   "disallowSpacesInCallExpression": true,
-  "disallowMultipleVarDecl": true,
+  "disallowMultipleVarDecl": false,
   "requireBlocksOnNewline": true,
   "disallowPaddingNewlinesInBlocks": true,
   "requirePaddingNewLinesInObjects": true,
