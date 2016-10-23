@@ -18,7 +18,6 @@
     todo1 = new Todo();
 
   var TodoView = Backbone.View.extend({
-    el: '#todosContainer',
     todoTpl: _.template('My todo template'),
 
     //Listening events over the template parts!
@@ -49,7 +48,9 @@
     }
   });
 
-  var todoView = new TodoView();
+  var todoView = new TodoView({
+    el: '#todosContainer'
+  });
 
   // todoView.el is a reference to the DOM element that corresponds to the instance of the view. In this case, <li>
   console.log(todoView.el);
