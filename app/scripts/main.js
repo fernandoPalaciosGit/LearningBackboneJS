@@ -21,12 +21,15 @@
     el: '#todoItems',
     initialize: function() {
       this.model.bind('change', _.bind(this.render, this));
+      this.model.set({
+        title: 'title'
+      });
+    },
+    render: function() {
+      console.log('Model changed!!');
     }
   });
-
-  todo1.set({
-    title: 'title'
+  var todo1View = new TodoView({
+    model: todo1
   });
-
-  var todo1View = new TodoView();
 })(window, document);
