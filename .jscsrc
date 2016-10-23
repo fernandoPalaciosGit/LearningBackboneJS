@@ -47,7 +47,7 @@
   "requireCapitalizedConstructors": true,
   "requireDotNotation": true,
   "disallowYodaConditions": true,
-  "requireSpaceAfterLineComment": true,
+  "requireSpaceAfterLineComment": false,
   "requireFunctionDeclarations": true,
   "disallowNewlineBeforeBlockStatements": true,
   "validateQuoteMarks": "'",

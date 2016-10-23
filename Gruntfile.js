@@ -39,7 +39,7 @@ module.exports = function (grunt) {
       src: "app/scripts/*.js",
       options: {
         config: ".jscsrc",
-        fix: false
+        fix: true
       }
     },
     jshint: {
