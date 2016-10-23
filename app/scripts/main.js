@@ -1,43 +1,22 @@
 (function (w, d) {
+  //Collections:
   var Todo = Backbone.Model.extend({
-      defaults: {
-        title: '',
-        completed: false
-      },
-      initialize: function () {
-        this.on('invalid', function (model, error) {
-          console.log(error);
-        });
-      },
-      validate: function (attrs) {
-        if (attrs.title === undefined) {
-          return 'Task title is void!!';
-        }
-      }
-    }),
-    todo1 = new Todo();
-
-  var TodoView = Backbone.View.extend({
-    el: '#todoItems',
-    events: {
-      'click .toggle': 'toggleCompleted'
-    },
-    initialize: function() {
-      this.model.bind('change', _.bind(this.render, this));
-      this.model.set({
-        title: 'title'
-      });
-
-      this.$el.find('.toggle').trigger('click');
-    },
-    toggleCompleted: function() {
-      alert();
-    },
-    render: function() {
-      console.log('Model changed!!');
+    defaults: {
+      title: '',
+      completed: false
     }
   });
-  var todo1View = new TodoView({
-    model: todo1
+  var TodosCollection = Backbone.Collection.extend({
+    model: Todo
   });
+
+  var task1 = new Todo({
+    title: 'Learn Backbonejs', id: 1
+  });
+  console.log(task1.attributes);
+
+  var todosList = new TodosCollection([task1]);
+
+  //For now, obviously, there's 1 task (model) added.
+  console.log('Tasks added: ' + todosList.length);
 })(window, document);
