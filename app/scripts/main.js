@@ -18,7 +18,8 @@
     todo1 = new Todo();
 
   var TodoView = Backbone.View.extend({
-    tagName: 'li',
+    className: 'container',
+    id: 'todos',
     todoTpl: _.template('My todo template'),
 
     //Listening events over the template parts!
