@@ -7,6 +7,7 @@
     }
   });
   var TodosCollection = Backbone.Collection.extend({
+    //This is how We specify which type of models is gonna contain this collection.
     model: Todo
   });
 
