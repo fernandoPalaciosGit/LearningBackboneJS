@@ -5,10 +5,12 @@
     <title>Title</title>
   </head>
   <body>
-
-    <div id="todosContainer">
-
-    </div>
+    <script type="text/template" id="item-template">
+      <div>
+        <input id="todo_complete" type="checkbox" <%= completed ? 'checked="checked"' : '' %> />
+        <%= title %>
+      </div>
+    </script>
     <script src="vendors/jquery/dist/jquery.min.js"></script>
     <script src="vendors/underscore/underscore-min.js"></script>
     <script src="vendors/backbone/backbone-min.js"></script>
