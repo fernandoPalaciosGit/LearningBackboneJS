@@ -49,7 +49,7 @@
   });
 
   var todoView = new TodoView({
-    el: '#todosContainer'
+    el: $('#todosContainer')
   });
 
   // todoView.el is a reference to the DOM element that corresponds to the instance of the view. In this case, <li>
