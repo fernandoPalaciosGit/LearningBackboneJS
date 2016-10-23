@@ -19,11 +19,19 @@
 
   var TodoView = Backbone.View.extend({
     el: '#todoItems',
+    events: {
+      'click .toggle': 'toggleCompleted'
+    },
     initialize: function() {
       this.model.bind('change', _.bind(this.render, this));
       this.model.set({
         title: 'title'
       });
+
+      this.$el.find('.toggle').trigger('click');
+    },
+    toggleCompleted: function() {
+      alert();
     },
     render: function() {
       console.log('Model changed!!');
