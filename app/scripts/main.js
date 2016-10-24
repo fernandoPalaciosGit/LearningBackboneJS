@@ -8,36 +8,37 @@
   });
 
   //Create a collection type, passing in wich type of models is gonna contain this collection.
-  var Library = Backbone.Collection.extend({
-    model: Book
-  });
+  var books = new Backbone.Collection();
+  books.add([
+    {
+      id: 1,
+      title: 'New Cool JS Book',
+      author: 'JS developer'
+    },
+    {
+      id: 1,
+      title: 'Re-titled book',
+      author: 'JS developers'
+    }
+  ]);
+  console.log(books);
+  console.log('Merge when adding models to a collection!');
 
-  //Create three books models.
-  var a = new Book({
- title: 'Javascript Patterns'
- }),
-    b = new Book({
- title: 'Javascript- The good parts'
- }),
-    c = new Book({
- title: 'Eloquent javascript'
- });
-
-  //I instantantiate my collection / library with 2 models / books
-  var libraryCatalog = new Library([a,b]);
-
-  //Notice since console is async, here I can't find the models in the model array cause I've removed them above!!
-  console.log(libraryCatalog);
-
-  //I add the third model to the collection
-  libraryCatalog.add(c);
-
-  //I should have 3 items / models in this collection
-  console.log('Collection size: ' + libraryCatalog.length);
-  //I remove 2 items from the collection, therefore... Size should be 1.
-  libraryCatalog.remove([a,b]);
-  console.log('Collection size: ' + libraryCatalog.length);
-  //I remove 1 item from the collection.. So... It should have 0 items, now.
-  libraryCatalog.remove(c);
-  console.log('Collection size: ' + libraryCatalog.length);
+  var books2 = new Backbone.Collection();
+  books2.add([
+    {
+      id: 1,
+      title: 'New Cool JS Book',
+      author: 'JS developer'
+    },
+    {
+      id: 1,
+      title: 'Re-titled book',
+      author: 'JS developers'
+    }
+  ],
+    {
+      merged: true
+    });
+  console.log(books2);
 })(window, document);
