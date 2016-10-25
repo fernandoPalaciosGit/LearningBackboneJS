@@ -38,5 +38,11 @@
     console.log(model.get('title'));
   });
 
+  //map: Iterates over a collection, and maps each value through a transformation function.
+  var count = 1;
+  console.log(tasks.map(function(model){
+    return count++ + ". " + model.get('title');
+  }));
+
 
 })(window, document);
