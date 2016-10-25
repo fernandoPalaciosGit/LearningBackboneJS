@@ -1,72 +1,14 @@
 (function (w, d) {
+  var customObj = {};
+// Mixin
+  _.extend(customObj, Backbone.Events);
 
-  var Task = Backbone.Model.extend({
-    defaults: {
-      title: '',
-      completed: false
-    }
+  //You can add a custom event
+  customObj.on('myCustomEvent', function(msg){
+    console.log('We triggered ' + msg);
   });
 
-  var TasksList = Backbone.Collection.extend({
-    model: Task,
-    url: '/tasks'
-  });
-
-  //Asks the models set.
-  var tasks = new TasksList();
-
-  //When fetching from the server, if we pass a reset:true option in a collection... It will be updated using reset instead of set.
-  tasks.fetch(
-    {
-      success: function() {
-        alert('Success');
-      },
-      error: function() {
-        alert('Error!');
-      }
-    },
-    {
-      reset:true
-    });
-
-  debugger;
-
-  //Asks for the model with the id 32
-  var task2 = tasks.get(32);
-  console.log(task2);
-
-  //Specifying patch: true when saving, only the changed attributes will sent to the server.
-  task2.save(task2.toJSON(),
-    {
-      patch: true
-    },
-    {
-      success: function() {
-        alert('Success');
-      },
-      error: function(model, xhr, options) {
-        console.log('Error');
-      }
-    });
-  //
-  // //This statement sends a HTTP POST Request to /tasks, and adds to the collection
-  // tasks.create({
-  //   title: 'New task to do 2!'
-  // });
-
-
-  //A model can be removed from the collection AND THE SERVE calling collection.destroy().
-  //Collection.remove() only removes it from the collection.
-  //Model.destroy will also send a HTTP delete request to the URL of the collection
-  task2.destroy();
-
-  //For note: calling destroy on a model that isNew... will return false.
-
-  //Options:
-  //All the RESTFul API methods accepts some methods. The most important to remember, is that all methods accept success and callback methods, so We can customize the handling of server responses.
-
-
-
-
+  //You can trigger the custom event
+  customObj.trigger('myCustomEvent', 'Message');
 
 })(window, document);
