@@ -1,42 +1,36 @@
 (function (w, d) {
   var counter = 0;
-  //How to retrieve a model from a collection:
-  var Todo = Backbone.Model.extend({
-    defaults: {
-      title: '',
-      completed: false
-    }
+  //Backbone supports once(), that will ensure that callback only fires one time when the notification arrives. You can use once instead of having to unbind object manually
+
+// I define an object with two props
+  var TodoCounter = {
+    prop1: 0,
+    prop2: 0
+  };
+// Mix in Backbone Events
+  _.extend(TodoCounter, Backbone.Events);
+
+// Increment counterA, triggering an event
+  var add1 = function(){
+    TodoCounter.prop1 += 1;
+
+    console.log(TodoCounter);
+    debugger;
+    //This trigger won't change the properties values!!
+    TodoCounter.trigger('event');
+  };
+
+// Increment counterB
+  var add2 = function(){
+    TodoCounter.prop2 += 1;
+  };
+
+  TodoCounter.once('event', add1);
+  TodoCounter.once('event', add2);
+
+  $('#todoItems').on('click', function() {
+    // Trigger the event for the first time
+    TodoCounter.trigger('event');
   });
 
-  var TodosCollection = new Backbone.Collection();
-
-  var myTodo = new Todo();
-
-//I can use the .on jquery way to declare listeners
-  myTodo.on({
-    'change:title' : titleChanged,
-    'change:completed' : stateChanged
-  });
-
-  function titleChanged(){
-    console.log('The title was changed!');
-  }
-
-  function stateChanged(){
-    console.log('The state was changed!');
-  }
-
-
-  //I will perform a title set It will fire the title changed event, which call the titleChanged callback!
-  myTodo.set({
-    title: 'Get the groceries'
-  });
-
-  $('.toggle').on('click', function() {
-    //This statement will change the title and the state of the task, so 2 events will be fired, and I will catch them.
-    myTodo.set({
-      title: 'Buy tons of coffee',
-      completed: true
-    });
-  });
 })(window, document);
