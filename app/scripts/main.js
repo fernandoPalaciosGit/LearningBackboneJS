@@ -60,15 +60,19 @@
     }).value());
 
 
+  //We can add som of the Backbone-specific methods. Such as add, set, and remove methods.
+  //It's not working for me, right now :/
 
-  // // start chain, returns wrapper around collection's models
-   //  .filter(function(item) { return item.get('age') > 10; }) // returns wrapped array excluding Tim
-   //  .map(function(item) { return item.get('name'); }) // returns wrapped array containing remaining names
-   //  .value(); // terminates the chain and returns the resulting array
+  tasks
+    .add({
+      title: 'New task 1',
+      completed: false
+    })
+    .add({
+      title: 'New Task 2'
+    });
 
-  //console.log(filteredNames); // logs: ['Ida', 'Rob']
-
-
-
+  console.log(tasks.models);
+  debugger;
 
 })(window, document);
