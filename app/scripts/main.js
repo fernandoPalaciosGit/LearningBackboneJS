@@ -14,16 +14,47 @@
 
   //Asks the models set.
   var tasks = new TasksList();
-  tasks.fetch();
-
-  //Asks for the model with the id 2
-  var task2 = tasks.get(2);
-  task2.set ('title', 'New task to do!');
-  task2.save(); //Sends an HTTP PUT Request to /tasks/2
-
-  //This statement sends a HTTP POST Request to /tasks, and adds to the collection
-  tasks.create({
-    title: 'New task to do 2!'
+  tasks.set({
+    id: 32,
+    title: 'My new task'
   });
+
+  //Asks for the model with the id 32
+  var task2 = tasks.get(32);
+  console.log(task2);
+
+  //Specifying patch: true when saving, only the changed attributes will sent to the server.
+  task2.save(task2.toJSON(),
+    {
+      patch: true
+    },
+    {
+      success: function() {
+        alert('Success');
+      },
+      error: function(model, xhr, options) {
+        console.log('Error');
+      }
+    });
+  //
+  // //This statement sends a HTTP POST Request to /tasks, and adds to the collection
+  // tasks.create({
+  //   title: 'New task to do 2!'
+  // });
+
+
+  //A model can be removed from the collection AND THE SERVE calling collection.destroy().
+  //Collection.remove() only removes it from the collection.
+  //Model.destroy will also send a HTTP delete request to the URL of the collection
+  task2.destroy();
+
+  //For note: calling destroy on a model that isNew... will return false.
+
+  //Options:
+  //All the RESTFul API methods accepts some methods. The most important to remember, is that all methods accept success and callback methods, so We can customize the handling of server responses.
+
+
+
+
 
 })(window, document);
