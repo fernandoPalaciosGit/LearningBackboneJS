@@ -1,23 +1,55 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Backbone.js • TodoMVC</title>
-  <link rel="stylesheet" href="styles/main.css">
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
-<script type="text/template" id="item-template"></script>
-<script type="text/template" id="stats-template"></script>
-<script src="vendors/jquery/dist/jquery.min.js"></script>
-<script src="vendors/underscore/underscore-min.js"></script>
-<script src="vendors/backbone/backbone-min.js"></script>
-<script src="vendors/backbone.localStorage/backbone.localStorage.js"></script>
-<script src="scripts/models/todo.js"></script>
-<script src="scripts/collections/todos.js"></script>
-<script src="scripts/views/todos.js"></script>
-<script src="scripts/views/app.js"></script>
-<script src="scripts/routers/router.js"></script>
+<section id="ta-app">
+  <header id="ta-header">
+    <h1>todos</h1>
+    <input id="ta-new-todo" placeholder="What needs to be done?" autofocus>
+  </header>
+  <section id="ta-main">
+    <input id="ta-toggle-all" type="checkbox">
+    <label for="ta-toggle-all">Mark all as complete</label>
+    <ul id="ta-todo-list"></ul>
+  </section>
+  <footer id="ta-footer"></footer>
+</section>
+
+<script type="text/template" id="ta-item-template">
+  <div class="ta-view">
+    <input class="ta-toggle" type="checkbox" <%= completed ? 'checked' : '' %> >
+    <label><%= title %></label>
+    <button class="ta-destroy"></button>
+  </div>
+  <input class="ta-edit" value="<%= title %>">
+</script>
+<script type="text/template" id="ta-stats-template">
+  <span id="ta-todo-count">
+          <strong><%= remaining %></strong>
+          <%= remaining === 1 ? 'item' : 'items' %> left
+      </span>
+  <ul id="ta-filters">
+    <li>
+      <a class="ta-selected" href="#/">All</a>
+    </li>
+    <li>
+      <a href="#/active">Active</a>
+    </li>
+    <li>
+      <a href="#/completed">Completed</a>
+    </li>
+  </ul>
+  <% if (completed) { %>
+  <button id="ta-clear-completed"> Clear completed (<%= completed %>) </button>
+  <% } %>
+</script>
+
+<div id="todo">
+  <input type='checkbox' />
+</div>
 <script src="scripts/app.js"></script>
 </body>
 </html>
