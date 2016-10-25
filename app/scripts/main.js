@@ -14,10 +14,22 @@
 
   //Asks the models set.
   var tasks = new TasksList();
-  tasks.set({
-    id: 32,
-    title: 'My new task'
-  });
+
+  //When fetching from the server, if we pass a reset:true option in a collection... It will be updated using reset instead of set.
+  tasks.fetch(
+    {
+      success: function() {
+        alert('Success');
+      },
+      error: function() {
+        alert('Error!');
+      }
+    },
+    {
+      reset:true
+    });
+
+  debugger;
 
   //Asks for the model with the id 32
   var task2 = tasks.get(32);
