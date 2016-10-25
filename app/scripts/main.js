@@ -7,38 +7,30 @@
     }
   });
 
-  //Create a collection type, passing in wich type of models is gonna contain this collection.
-  var books = new Backbone.Collection();
-  books.add([
-    {
-      id: 1,
-      title: 'New Cool JS Book',
-      author: 'JS developer'
-    },
-    {
-      id: 1,
-      title: 'Re-titled book',
-      author: 'JS developers'
-    }
-  ]);
-  console.log(books);
-  console.log('Merge when adding models to a collection!');
+  //Use of merge when adding a model to a collection!
+  var items = new Backbone.Collection();
+  items.add([{
+ id : 1, name: 'Javascript the good parts' , year: 2008
+ }, {
+ id : 2, name: 'Dev. Backbonejs apps' , year: 2012
+ }]);
 
-  var books2 = new Backbone.Collection();
-  books2.add([
-    {
-      id: 1,
-      title: 'New Cool JS Book',
-      author: 'JS developer'
-    },
-    {
-      id: 1,
-      title: 'Re-titled book',
-      author: 'JS developers'
-    }
-  ],
-    {
-      merged: true
-    });
-  console.log(books2);
+  console.log(items);
+  
+  items.add([{
+ id : 1, name: 'Eloquent Javascript'
+ }], {
+ merge: true
+ });
+
+  console.log('Book with id 1 has change its name cause merge is set to true');
+  console.log(items);
+
+
+  items.add([{
+ id : 2, name: 'lion'
+ }]); // merge: false
+
+  console.log(JSON.stringify(items.toJSON()));
+  console.log(items);
 })(window, document);
