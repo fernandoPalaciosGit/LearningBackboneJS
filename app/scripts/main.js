@@ -10,25 +10,33 @@
 
   var TodosCollection = new Backbone.Collection();
 
-// I bind a change event when the title property changes ¿in any model of the collection?
-  TodosCollection.on('change:title', function(model) {
-    //
-    console.log('I catched the event. Models been changed  to ' + model.get('title'));
+  var myTodo = new Todo();
+
+//I can use the .on jquery way to declare listeners
+  myTodo.on({
+    'change:title' : titleChanged,
+    'change:completed' : stateChanged
   });
 
-  TodosCollection.add([
-    {
-      title: 'go to Jamaica.',
-      completed: false, id: 3
-    }
-  ]);
+  function titleChanged(){
+    console.log('The title was changed!');
+  }
 
-  console.log('Before changing the model title name, it has the value: ' + TodosCollection.get(3).attributes.title);
-  debugger;
+  function stateChanged(){
+    console.log('The state was changed!');
+  }
+
+
+  //I will perform a title set It will fire the title changed event, which call the titleChanged callback!
+  myTodo.set({
+    title: 'Get the groceries'
+  });
 
   $('.toggle').on('click', function() {
-    var myTodo = TodosCollection.get(3);
-    //When setting a property, an event gets fired.
-    myTodo.set('title', 'Learn Backbonejs');
+    //This statement will change the title and the state of the task, so 2 events will be fired, and I will catch them.
+    myTodo.set({
+      title: 'Buy tons of coffee',
+      completed: true
+    });
   });
 })(window, document);
