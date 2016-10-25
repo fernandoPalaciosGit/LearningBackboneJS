@@ -1,7 +1,17 @@
 (function (w, d) {
 
+  var TasksList = Backbone.Collection.extend({
+    filterById: function(ids){
+      return this.filter(
+        function(c) {
+          return _.contains(ids, c.id);
+        })
+    }
+  });
+
+
   //I'm gona use this collection.
-  var tasks = new Backbone.Collection();
+  var tasks = new TasksList();
   tasks.add([
     {
       id: 1,
@@ -62,5 +72,14 @@
 
   //Pluck: Returns an array with a specific property in all the arrays
   console.log(tasks.pluck('title'));
+
+
+  //Filter(): Must to take another look at how it works!!
+  debugger;
+  console.log(tasks.filterById());
+  
+
+
+
 
 })(window, document);
