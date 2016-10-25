@@ -19,10 +19,14 @@
     }
   ]);
 
-  //I can use reset() with no arguments for resetting to void the entire collection. It'd be usefull, for exaple, If I need to load a new page of elements, and I want to start 'clean' of models in my collection
-  MyCollection.reset();
+  MyCollection.on("remove:completed", function(model) {
+    console.log("This event won't be fired when resetting the collection!!");
+    console.log(MyCollection.models);
+    debugger
+  });
 
+  MyCollection.reset();
   console.log(MyCollection.models);
-  debugger;
+
 
 })(window, document);
