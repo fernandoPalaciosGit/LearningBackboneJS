@@ -8,7 +8,7 @@ module.exports = function (grunt) {
           }
         },
         files: {
-          'dist/js/main.min.js': ['app/scripts/*.js']
+          'dist/scripts/app.min.js': ['app/scripts/*.js']
         }
       }
     },
@@ -48,7 +48,7 @@ module.exports = function (grunt) {
     copy: {
       js: {
         files: [
-          {expand: true, cwd: 'app/scripts', src: ['**'], dest: 'dist/js'},
+          {expand: true, cwd: 'app/scripts', src: ['**'], dest: 'dist/scripts'},
 
         ],
       },
@@ -79,7 +79,7 @@ module.exports = function (grunt) {
       }
     },
     clean: {
-      js: ['dist/js/*.js', '!dist/js/r/*.min.js'],
+      js: ['dist/scripts/*.js', '!dist/scripts/r/*.min.js'],
       css: ['dist/styles/*.css', '!dist/styles/*.min.css']
     }
   });
@@ -93,7 +93,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  
+
   grunt.registerTask('dev', ['cssmin', 'copy', 'watch']);
   grunt.registerTask('dist', ['check:js', 'check:css', 'clean:js', 'clean:css']);
   grunt.registerTask('check:js', ['jscs', 'jshint']);
