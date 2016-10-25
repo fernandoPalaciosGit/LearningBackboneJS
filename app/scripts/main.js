@@ -1,7 +1,5 @@
 (function (w, d) {
 
-  //Collection.fetch gets a set of models from the server in a JSON format array to the URL set in the collection URL property.
-
   var Task = Backbone.Model.extend({
     defaults: {
       title: '',
@@ -13,6 +11,19 @@
     model: Task,
     url: '/tasks'
   });
+
+  //Asks the models set.
   var tasks = new TasksList();
   tasks.fetch();
+
+  //Asks for the model with the id 2
+  var task2 = tasks.get(2);
+  task2.set ('title', 'New task to do!');
+  task2.save(); //Sends an HTTP PUT Request to /tasks/2
+
+  //This statement sends a HTTP POST Request to /tasks, and adds to the collection
+  tasks.create({
+    title: 'New task to do 2!'
+  });
+
 })(window, document);
