@@ -10,31 +10,25 @@
 
   var TodosCollection = new Backbone.Collection();
 
-  TodosCollection.on('add', function(todo) {
-    //Does it fires add event for each model We add, or just once, In the moment We add to the collection?? Let's find it out!!
-    counter++;
-    //console.log('I should ' + todo.get('title') + '. Have I done it before? '  + (todo.get('completed') ? 'Yeah!' : 'No.'));
-    console.log(counter); // 1 //2 //3
-
-    //It fires the add event of the collection once for each model added.
+// I bind a change event when the title property changes ¿in any model of the collection?
+  TodosCollection.on('change:title', function(model) {
+    //
+    console.log('I catched the event. Models been changed  to ' + model.get('title'));
   });
+
+  TodosCollection.add([
+    {
+      title: 'go to Jamaica.',
+      completed: false, id: 3
+    }
+  ]);
+
+  console.log('Before changing the model title name, it has the value: ' + TodosCollection.get(3).attributes.title);
+  debugger;
 
   $('.toggle').on('click', function() {
-    TodosCollection.add([
-      {
-        title: 'go to Jamaica', completed: false
-      },
-      {
-        title: 'go to China', completed: false
-      },
-      {
-        title: 'go to Disneyland', completed: true
-      }
-    ]);
+    var myTodo = TodosCollection.get(3);
+    //When setting a property, an event gets fired.
+    myTodo.set('title', 'Learn Backbonejs');
   });
-
-// The above logs:
-// I should go to Jamaica. Have I done it before? No.
-// I should go to China. Have I done it before? No.
-// I should go to Disneyland. Have I done it before? Yeah!
 })(window, document);
