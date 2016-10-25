@@ -1,15 +1,13 @@
 (function (w, d) {
   var customObject = {};
 
-  //If We have a lof of custom events Within our application, We can add namespaced custom events.
-  function MyHandler(msg) {
-    console.log('Handler: ' + msg);
+  //We can use a "all" event, for listening any event that occurs in on the object.
+  function MyHandler(evt) {
+    console.log('Event: ' + evt);
   }
-
   _.extend(customObject, Backbone.Events);
 
-  customObject.on('customEvent:click', MyHandler);
-  customObject.on('customEvent:over', MyHandler);
+  customObject.on('all', MyHandler);
 
 
   $('#todoItems').on('click', function() {
@@ -22,7 +20,7 @@
     customObject.trigger('customEvent:over', 'Hover!!');
   });
 
-  //This trigger does not trigger anything, since there isn't any listener listening for it.
+  //This time, We'll receive this event, cause We are listening ALL events over customObject
   customObject.trigger('customEvent', 'Message!!');
 
 
