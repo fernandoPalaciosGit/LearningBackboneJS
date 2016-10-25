@@ -19,11 +19,9 @@
     }
   ]);
 
-  MyCollection.set([
-    { id: 1, title: 'go to Jamaica.', completed: true },
-    { id: 2, title: 'go to China.', completed: false },
-    { id: 4, title: 'go to Disney World.', completed: false }
-  ]);
+  //What happens, if I pass an array with 0 elements?
+
+  MyCollection.set([]);
 
   console.log(MyCollection.models);
   debugger;
