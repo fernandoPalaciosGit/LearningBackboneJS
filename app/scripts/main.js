@@ -1,36 +1,31 @@
 (function (w, d) {
-  var counter = 0;
-  //Backbone supports once(), that will ensure that callback only fires one time when the notification arrives. You can use once instead of having to unbind object manually
+  //I can re-set an entire collection at once by passing a models array!!
+  var MyCollection = new Backbone.Collection();
+  MyCollection.add([
+    {
+      id: 1,
+      title: 'Learn BackboneJS',
+      completed: false
+    },
+    {
+      id: 2,
+      title: 'Eat Pizza',
+      completed: false
+    },
+    {
+      id: 3,
+      title: 'Take coffee',
+      completed: false
+    }
+  ]);
 
-// I define an object with two props
-  var TodoCounter = {
-    prop1: 0,
-    prop2: 0
-  };
-// Mix in Backbone Events
-  _.extend(TodoCounter, Backbone.Events);
+  MyCollection.set([
+    { id: 1, title: 'go to Jamaica.', completed: true },
+    { id: 2, title: 'go to China.', completed: false },
+    { id: 4, title: 'go to Disney World.', completed: false }
+  ]);
 
-// Increment counterA, triggering an event
-  var add1 = function(){
-    TodoCounter.prop1 += 1;
-
-    console.log(TodoCounter);
-    debugger;
-    //This trigger won't change the properties values!!
-    TodoCounter.trigger('event');
-  };
-
-// Increment counterB
-  var add2 = function(){
-    TodoCounter.prop2 += 1;
-  };
-
-  TodoCounter.once('event', add1);
-  TodoCounter.once('event', add2);
-
-  $('#todoItems').on('click', function() {
-    // Trigger the event for the first time
-    TodoCounter.trigger('event');
-  });
+  console.log(MyCollection.models);
+  debugger;
 
 })(window, document);
