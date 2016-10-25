@@ -7,18 +7,28 @@
     }
   });
 
-  var TodosCollection = Backbone.Collection.extend({
-    model: Todo
+  var TodosCollection = new Backbone.Collection();
+
+  TodosCollection.on('add', function(todo) {
+    console.log('I should ' + todo.get('title') + '. Have I done it before? '  + (todo.get('completed') ? 'Yeah!' : 'No.'));
   });
 
-  var myTodo = new Todo({
-    title: 'Read the whole book', id: 2
+  $('.toggle').on('click', function() {
+    TodosCollection.add([
+      {
+        title: 'go to Jamaica', completed: false
+      },
+      {
+        title: 'go to China', completed: false
+      },
+      {
+        title: 'go to Disneyland', completed: true
+      }
+    ]);
   });
 
-  //I pass an array of models to the collection when instantiating.
-  var todos = new TodosCollection([myTodo]);
-  //I can use the Collection.get() method. It accepts the model id.
-  var todo2 = todos.get(2);
-  //Since models are objects, they're passed by reference.
-  console.log(todo2 === myTodo); // true
+// The above logs:
+// I should go to Jamaica. Have I done it before? No.
+// I should go to China. Have I done it before? No.
+// I should go to Disneyland. Have I done it before? Yeah!
 })(window, document);
