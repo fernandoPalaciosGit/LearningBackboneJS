@@ -4,14 +4,17 @@
   var tasks = new Backbone.Collection();
   tasks.add([
     {
+      id: 1,
       title: 'Try Backbone',
       completed: false
     },
     {
+      id: 2,
       title: 'Go to buy some clothes',
       completed: false
     },
     {
+      id: 3,
       title: 'Learn English',
       completed: false
     }
@@ -45,4 +48,15 @@
   }));
 
 
+  //min / max : Gets the item with min or max value for a property of the model.
+  var lastItem = tasks.max(function(model) {
+    return model.id
+  }).id;
+  var firstItem = tasks.min(function(model) {
+    return model.id
+  }).id;
+
+  console.log('Max: ' + lastItem);
+  console.log('Min: ' + firstItem);
+  
 })(window, document);
