@@ -58,5 +58,9 @@
 
   console.log('Max: ' + lastItem);
   console.log('Min: ' + firstItem);
-  
+
+
+  //Pluck: Returns an array with a specific property in all the arrays
+  console.log(tasks.pluck('title'));
+
 })(window, document);
