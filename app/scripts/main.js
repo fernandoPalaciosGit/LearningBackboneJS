@@ -1,36 +1,24 @@
 (function (w, d) {
-  //Create a model type for instantiate from. (I've changed the concept to book, instead of to do tasks, only for this example).
-  var Book = Backbone.Model.extend({
+  //How to retrieve a model from a collection:
+  var Todo = Backbone.Model.extend({
     defaults: {
-      title: 'Developing Backbone JS apps',
-      author: 'Addy Osmani'
+      title: '',
+      completed: false
     }
   });
 
-  //Use of merge when adding a model to a collection!
-  var items = new Backbone.Collection();
-  items.add([{
- id : 1, name: 'Javascript the good parts' , year: 2008
- }, {
- id : 2, name: 'Dev. Backbonejs apps' , year: 2012
- }]);
+  var TodosCollection = Backbone.Collection.extend({
+    model: Todo
+  });
 
-  console.log(items);
-  
-  items.add([{
- id : 1, name: 'Eloquent Javascript'
- }], {
- merge: true
- });
+  var myTodo = new Todo({
+    title: 'Read the whole book', id: 2
+  });
 
-  console.log('Book with id 1 has change its name cause merge is set to true');
-  console.log(items);
-
-
-  items.add([{
- id : 2, name: 'lion'
- }]); // merge: false
-
-  console.log(JSON.stringify(items.toJSON()));
-  console.log(items);
+  //I pass an array of models to the collection when instantiating.
+  var todos = new TodosCollection([myTodo]);
+  //I can use the Collection.get() method. It accepts the model id.
+  var todo2 = todos.get(2);
+  //Since models are objects, they're passed by reference.
+  console.log(todo2 === myTodo); // true
 })(window, document);
