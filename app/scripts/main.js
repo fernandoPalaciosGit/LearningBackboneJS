@@ -19,10 +19,9 @@
     }
   ]);
 
-  MyCollection.on("remove:completed", function(model) {
-    console.log("This event won't be fired when resetting the collection!!");
-    console.log(MyCollection.models);
-    debugger
+  MyCollection.on("reset", function() {
+    console.log("The event fired was reset.");
+    debugger;
   });
 
   MyCollection.reset();
