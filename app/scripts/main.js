@@ -1,4 +1,5 @@
 (function (w, d) {
+  var counter = 0;
   //How to retrieve a model from a collection:
   var Todo = Backbone.Model.extend({
     defaults: {
@@ -10,7 +11,12 @@
   var TodosCollection = new Backbone.Collection();
 
   TodosCollection.on('add', function(todo) {
-    console.log('I should ' + todo.get('title') + '. Have I done it before? '  + (todo.get('completed') ? 'Yeah!' : 'No.'));
+    //Does it fires add event for each model We add, or just once, In the moment We add to the collection?? Let's find it out!!
+    counter++;
+    //console.log('I should ' + todo.get('title') + '. Have I done it before? '  + (todo.get('completed') ? 'Yeah!' : 'No.'));
+    console.log(counter); // 1 //2 //3
+
+    //It fires the add event of the collection once for each model added.
   });
 
   $('.toggle').on('click', function() {
