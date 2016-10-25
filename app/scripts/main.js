@@ -1,26 +1,17 @@
 (function (w, d) {
-  var customObject = {};
 
-  //We can use a "all" event, for listening any event that occurs in on the object.
-  function MyHandler(evt) {
-    //This handler will be executed three times, because 3 events were fired!
-    console.log('Event: ');
-  }
-  _.extend(customObject, Backbone.Events);
-
-  //Event listeners
-  customObject.on("click", MyHandler);
-  customObject.on("tap", MyHandler);
-  customObject.on("over", MyHandler);
+  //On() and Off() added callbacks directly to an object.
+  //listenTo() tells an object to listen for events on another object. It allows the listener to track the events for which it was listening.
 
 
-  $('#todoItems').on('click', function(evt) {
-    // We can trigger multiple events
-    customObject.trigger("click tap over", evt);
+  var obj1 = _.extend({}, Backbone.Events);
+  var obj2 = _.extend({}, Backbone.Events);
+  var obj3 = _.extend({}, Backbone.Events);
+
+  obj1.listenTo(obj2, 'customEvent1', function() {
+    console.log('customEvent1 in obj2');
   });
 
-
-
-
+  obj2.trigger('customEvent1');
 
 })(window, document);
